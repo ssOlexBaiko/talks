@@ -1,0 +1,7 @@
+Develop a program which is a simple http-client.
+Progman should:
+- Make a request to get thending gifs from www.giphy.com
+(Req: /v1/gifs/trending; Doc: https://developers.giphy.com/docs/; API_KEY: WsJyksJKHPWzjL7dWwhRGx8PXp6VJkZV )
+- Have an optional limit number (flag pkg)
+- Print gifs URL and name
+- Write gifs to a local file

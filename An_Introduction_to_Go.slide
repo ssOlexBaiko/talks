@@ -1,0 +1,172 @@
+An Introduction to Go
+24 April 2018
+Tags: Go, Syntax, Types, Std.lib
+
+Oles Baiko
+Go Software Engineer
+
+Thanks to
+Borys Hulii
+
+* Agenda
+
+- What is Go. Where did it get from?
+- Go strong and weak sides
+- Standart types
+- How to configure local environment
+- Standart library
+- Demo (write simple program)
+
+* What is Go. Where did it get from?
+
+- What is Go
+
+	The Go programming language is an open source project to make programmers more productive.
+
+	Go is expressive, concise, clean, and efficient. Its concurrency mechanisms make it easy to write
+	programs that get the most out of multicore and networked machines, while its novel type system
+	enables flexible and modular program construction. Go compiles quickly to machine code yet has the
+	convenience of garbage collection and the power of run-time reflection. It's a fast, statically
+	typed, compiled language that feels like a dynamically typed, interpreted language.
+
+- Authors
+	Robert Griesemer
+	Rob Pike
+	Ken Thompson
+
+* The most important influences of earlier programming languages on
+the design of Go.
+
+.image ./media/influences_on_go.png 500 450
+
+* Go strong and weak sides
+
+- Strong sides
+	Modern, simple
+	Compact, concise, general-purpose
+	Imperative, statically type-checked, dynamically type-safe
+	Garbage-collected
+	Compiles to native code, statically linked
+	Fast compilation, efficient execution
+	Supports easy cross compilation
+
+- Weak sides
+	You have to type a lot =)
+	Much harder to debug
+	Ignores the achievements of modern language design
+	Hell in dependency management
+	No generics
+	Go traps
+
+* Standart types
+
+Simple types
+
+	uint (uint8, uint16, uint32, uint64) - unsigned ingegers. Zero value - 0
+	int (int8, int16, int32, int64) - signed ingegers. Zero value - 0
+	float32, float64 - floating-point numbers. Zero value - 0.0
+	complex64, complex128 - complex numbers with float32 real and imaginary parts. Zero value - (0+0i)
+	bool - true and false. Zero value - false
+
+	byte - alias for uint8. Zero value - 0
+	string - represents the set of string values (immutable). Zero value - ""
+	rune - alias for uint32. Zero value - 0
+	array - sequence of elements of a single type
+
+Complex types
+
+	slice - descriptor for a contiguous segment of an underlying array
+	map - an unordered group of elements of one type, indexed by a set of unique keys of another type
+	chan - provides a mechanism for concurrently executing functions to communicate (queue)
+	struct - a sequence of named elements, called fields, each of which has a name and a type
+	interface - specifies a method set
+	func - specifies a function sign
+
+Zero values for slice, map, chan, interface, pointer is nil
+
+* String and Rune
+
+.play ./code/string-rune.go
+
+* Slice
+
+	type slice struct {
+		array unsafe.Pointer
+		len   int
+		cap   int
+	}
+
+.play ./code/slice.go /^func main/,/^}/
+
+.link https://golang.org/src/runtime/slice.go Source file src/runtime/slice.go
+.link https://blog.golang.org/go-slices-usage-and-internals Go Slices: usage and internals
+
+* Manipulations with types
+
+* Simple types
+
+.play ./code/simple-type-conv.go /^func main/,/^}/
+
+All type conversions with string are provided by the strconv package. Except for conversion to []byte
+.link https://golang.org/pkg/strconv strvconv package
+
+* Structs
+
+We are quite limited with structs because of type system
+
+.play ./code/struct-type-conv.go /^func main/,/^}/
+
+* Interfaces
+
+.play ./code/interface.go /START OMIT/,/END OMIT/
+
+* Built in
+	func append(slice []Type, elems ...Type) []Type - Appends values to a given slice
+	func copy(dst, src []Type) int - copies elements from a src slice into a dst slice
+
+	func delete(m map[Type]Type1, key Type) - deletes the element with the specified key from the map
+
+	func len(v Type) int - returns len or passed object. string, map, slice, chan, (pointer to) array
+	func cap(v Type) int - returns len or passed object. slice, chan, (pointer to) array
+
+	func close(c chan<- Type) - closes a channel, which must be either bidirectional or send-only
+
+	func make(t Type, size ...IntegerType) Type - initializes an object of type slice, map, or chan only
+	func new(Type) *Type - allocates memory
+
+	func panic(v interface{}) - throws panic with specified message
+	func recover() interface{} - "catchs" panic
+
+	type error - One of the buit in types. Interface with method "Error() string" only
+
+.link https://golang.org/pkg/builtin/ Builtin functions
+
+* Local environment
+
+.image ./media/local_env.png
+
+* Demo
+
+.play ./code/request-demo.go /^func main/,/^}/
+
+* Q&A
+
+.image ./media/GOPHER_MIC_DROP.png 250 220
+
+* Links
+
+.link https://golang.org/ref/spec#Types The Go Programming Language Specification - Types
+.link https://golang.org/pkg/strconv strvconv package
+.link https://golang.org/src/runtime/slice.go Source file src/runtime/slice.go
+.link https://blog.golang.org/go-slices-usage-and-internals Go Slices: usage and internals
+.link https://blog.golang.org/8years 8 Years of Go
+
+
+Will be helpfull on HA
+.link https://go-traps.appspot.com/ Go Traps
+.link https://golang.org/pkg/fmt/ fmt
+.link https://golang.org/pkg/flag/ flag
+.link https://golang.org/pkg/os/ os
+.link https://golang.org/pkg/net/http/ net/http
+.link https://golang.org/pkg/encoding/json/ encoding/json
+.link http://dlintw.github.io/gobyexample/public/http-client.html Example of http-client
