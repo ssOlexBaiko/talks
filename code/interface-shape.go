@@ -11,9 +11,7 @@ type Shape interface {
 type Square struct {
    side  uint
 }
-func (s *Square) GetPerimeter() uint {
-    return s.side * 4
-}
+func (s *Square) GetPerimeter() uint { return s.side * 4 }
 func (s *Square) GetArea() uint {
     return s.side * s.side
 }
