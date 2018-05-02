@@ -1,0 +1,22 @@
+Development task: Gipher
+Database: mysql
+Router lib: https://github.com/go-chi/chi
+-----
+Create an application with simple REST API using HTTP protocol. All data must be transferred in JSON format only
+It should have several endpoints with different content
+- GET http://localhost:8081/gifs - should return list of all available gifs (HTTP statuses. On Success: 200;)
+- POST http://localhost:8081/gifs - should accept object with new gif and check if all fields are populated and save in db. ID should be generated on server (HTTP statuses. On Success: 201; On Fail: 400;)
+- GET http://localhost:8081/gifs/[id] - should return gif by id (HTTP statuses. On Success: 200; On Fail: 404;)
+- DELETE http://localhost:8081/gifs/[id] - should delete book from library by id (HTTP statuses. On Success: 204; On Fail: 404;)
+- PUT http://localhost:8081/gifs/[id] - should accept an object with changed fields only and update it by id. Final state of gif should be returned on every call (HTTP statuses. On Success: 200; On Fail (extra fields or not valid data type): 400; On Fail (book does not exist): 404;)
+-----
+
+Application should have packages:
+	main - application starter
+	storage - implements storage and interface to work with it
+	api/web - implements all handlers, server and routers
+
+Useful Links:
+http://doc.gorm.io/
+https://github.com/alecthomas/gometalinter
+https://www.codementor.io/codehakase/building-a-restful-api-with-golang-a6yivzqdo

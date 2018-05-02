@@ -1,0 +1,64 @@
+Functions, Structs and Interfaces
+2 May 2018
+Tags: Go, functions, Structs, Interfaces
+
+Oles Baiko
+Go Software Engineer
+
+* Agenda
+
+- Functions:
+    Passing parameters
+    Returning multiple values from Function
+    Function Closures
+    First Class Functions
+- Structs:
+    Go's "OOP"
+    Methods
+- Interfaces:
+    Usage
+
+* Functions: Passing parameters
+.play ./code/func-params.go
+
+* Functions: Returning multiple values
+A function is an independent section of code that maps zero or more input parameters to zero or more output parameters.
+.play ./code/func-mult-return.go
+
+* Functions: Closures
+Closures is a technique for implementing lexically scoped name binding in a language with first-class functions.
+.play ./code/func-closures.go /START OMIT/,/END OMIT/
+
+* Functions: First Class Functions
+A language which supports first class functions allows functions to be assigned to variables, passed as arguments to other functions and returned from other functions.
+.play ./code/first-class-func.go /START OMIT/,/END OMIT/
+
+* Structs: "OOP" in Go
+.play ./code/struct-embaded.go /START OMIT/,/END OMIT/
+
+* Structs: Methods
+.play ./code/struct-methods.go /START OMIT/,/END OMIT/
+
+* Interfaces
+A Go interface is a type that consists of a collection of method signatures.
+.play ./code/interface-shape.go /START OMIT/,/END OMIT/
+
+* Interfaces
+.play ./code/interface-shape.go /START READ/,/END READ/
+
+* Interfaces: Dependency Injection
+.play ./code/interface-di.go
+
+* Q&A
+
+.image ./media/GOPHER_MIC_DROP.png 250 220
+
+* Links
+
+https://gobyexample.com/functions
+https://golangbot.com/first-class-functions/
+https://travix.io/type-embedding-in-go-ba40dd4264df
+https://www.ardanlabs.com/blog/2013/07/object-oriented-programming-in-go.html
+https://talks.golang.org/2013/bestpractices.slide
+https://golang.org/doc/effective_go.html
+https://medium.com/@zach_4342/dependency-injection-in-golang-e587c69478a8
