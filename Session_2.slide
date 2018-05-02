@@ -44,7 +44,7 @@ A Go interface is a type that consists of a collection of method signatures.
 .play ./code/interface-shape.go /START OMIT/,/END OMIT/
 
 * Interfaces
-.play ./code/interface-shape.go /START READ/,/END READ/
+.play ./code/interface-shape.go /^func main/,/^}/
 
 * Interfaces: Dependency Injection
 .play ./code/interface-di.go
