@@ -9,20 +9,20 @@ type Shape interface {
     GetArea() int
 }
 type Square struct {
-   side  uint
+   side  int
 }
-func (s *Square) GetPerimeter() uint { return s.side * 4 }
-func (s *Square) GetArea() uint {
+func (s *Square) GetPerimeter() int { return s.side * 4 }
+func (s *Square) GetArea() int {
     return s.side * s.side
 }
 type Rectangle struct {
-   width  uint
-   height uint
+   width  int
+   height int
 }
-func (r *Rectangle) GetPerimeter() uint {
+func (r *Rectangle) GetPerimeter() int {
     return (r.width + r.height) * 2
 }
-func (r *Rectangle) GetArea() uint {
+func (r *Rectangle) GetArea() int {
     return r.width * r.height
 }
 //END OMIT
@@ -30,7 +30,7 @@ func (r *Rectangle) GetArea() uint {
 func main() {
     shapes := []Shape{&Square{side: 2},
                       &Rectangle{width: 3, height: 5}}
-    var totalArea uint
+    var totalArea int
     for _, shape := range shapes {
         totalArea += shape.GetArea()
     }
