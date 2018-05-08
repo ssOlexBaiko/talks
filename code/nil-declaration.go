@@ -1,6 +1,6 @@
 package main
 
-import "github.com/pkg/errors"
+import "errors"
 
 func main() {
 	//a := nil compilation error: cannot assign nil without explicit type
