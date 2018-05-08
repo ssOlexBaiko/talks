@@ -1,9 +1,9 @@
+package main
+import "github.com/ssOlexBaiko/library/storage"
 // example of DI in Golang
-
 type handler struct {
 	storage Storage
 }
-
 type Storage interface {
 	GetBooks() (storage.Books, error)
 	CreateBook(book storage.Book) error

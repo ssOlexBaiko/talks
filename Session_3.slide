@@ -1,0 +1,103 @@
+What is nil and how to use it
+8 May 2018
+Tags: Go, functions, Structs, Interfaces, nil
+
+Oles Baiko
+Go Software Engineer
+
+Thanks to
+Francesc Campoy
+
+* Agenda
+
+- What is nil?
+- What is nil in Go?
+- Is nil useful?
+
+* What is nil?
+.image ./media/etymology.png
+
+Nil is (a) zero
+* The Billion Dollar Mistake
+.image ./media/null.png
+
+* Nil is not a keyword
+.image ./media/keywords.png
+
+* Nil has no type
+.play ./code/nil-declaration.go
+
+* Zero values
+.image ./media/zero_values.png
+
+* Interfaces
+- Stringer
+var s fmt.Stringer // Stringer(nil, nil)
+fmt.Println(s == nil) // true
+---------------------------------------
+var p *Person // nil of typr Person
+var s fmt.Stringer = p // (*Person, nil)
+fmt.Println(s == nil) // false
+
+* When nil is not nil?
+- doError
+func do() error { // error (*doError, nil)
+    var err *doError
+    return err // nil of type *doError
+}
+func main() {
+    err := do() error (*doError, nil)
+    fmt.Println(err == nil) // false
+}
+
+* Nil is not nil for some kind of nil
+-doError
+func do() *doError { // nil of type *doError
+    return nil
+}
+func wrapDo() error { // error (*doError, nil)
+    return do() // nil of type *doError
+}
+func main() {
+    err := wrapDo() // error (*doError, nil)
+    fmt.Println(err == nil) // false
+}
+
+* Usage of nil in interfaces
+- Pointer receivers
+type person struct{}
+func Speek (p *person) {fmt.Println("hi")}
+func (p *person) Speek() string {return "hi"}
+var p *person
+p.Speek() // hi
+
+* Usage of nil in interfaces
+- Nil values can satisfy interfaces
+type Speeker interface {
+    func Speek() string
+}
+var p *person
+var s Speeker = p
+fmt.Println(p == nil, s.Speek()) // true hi
+
+* Usage of nil in interfaces
+- Nil values can satisfy interfaces
+type speekers []string
+(s speekers) Speek() string {
+    speech := "hi"
+    for _, i := range s {
+        speech += s
+    }
+    return speech
+}
+var sp speekers
+var s Speeker = sp
+fmt.Println(sp == nil, s.Speek()) // true hi
+
+* Nil is useful
+.image ./media/usefulnil.png
+
+* Links
+https://www.youtube.com/watch?v=ynoY2xz-F8s
+https://go-proverbs.github.io/
+https://golang.org/doc/effective_go.html
