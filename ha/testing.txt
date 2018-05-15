@@ -1,0 +1,10 @@
+Develop tests for your rest api server:
+1) For package api/web use https://github.com/stretchr/testify
+2) For package storage use https://github.com/smartystreets/goconvey
+
+Useful links:
+https://golang.org/pkg/testing/
+https://github.com/ghsukumar/SFDC_Best_Practices/wiki/F.I.R.S.T-Principles-of-Unit-Testing !!!!!!!!
+https://www.golang-book.com/books/intro/12
+https://github.com/alecthomas/gometalinter
+https://github.com/dvyukov/go-fuzz
