@@ -1,0 +1,13 @@
+3 Trivial Concurrency Exercises for the Confused Newbie Gopher
+
+http://whipperstacker.com/2015/10/05/3-trivial-concurrency-exercises-for-the-confused-newbie-gopher/
+
+Useful links:
+https://github.com/golang/go/wiki/LearnConcurrency
+https://blog.golang.org/advanced-go-concurrency-patterns
+https://gobyexample.com/
+http://golang-examples.tumblr.com/
+
+Materials from class:
+Struct validator: https://github.com/asaskevich/govalidator
+Go interfaces & pointers: https://medium.com/@saiyerram/go-interfaces-pointers-4d1d98d5c9c6
