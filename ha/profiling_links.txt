@@ -1,0 +1,8 @@
+Profiling:
+https://blog.golang.org/profiling-go-programs
+https://jvns.ca/blog/2017/09/24/profiling-go-with-pprof/
+https://dave.cheney.net/2013/07/07/introducing-profile-super-simple-profiling-for-go-programs
+https://dave.cheney.net/2014/10/22/simple-profiling-package-moved-updated
+https://habr.com/company/badoo/blog/301990/
+JSON parser:
+https://github.com/buger/jsonparser

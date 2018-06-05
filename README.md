@@ -11,3 +11,5 @@ Lesson 4. [Home assignment](https://github.com/ssOlexBaiko/talks/blob/master/ha/
 Lesson 5. [Go concurrency](https://talks.godoc.org/github.com/ssOlexBaiko/talks/Session_5_go_concurrency.slide) | [Home assignment](https://github.com/ssOlexBaiko/talks/blob/master/ha/contextDemo.go)
 
 Lesson 6. [Concurrency HA](https://github.com/ssOlexBaiko/talks/blob/master/ha/concurrency_ha.txt)
+
+Lesson 8. [Profiling links&samples](https://github.com/ssOlexBaiko/talks/blob/master/ha/profiling_links.txt)
