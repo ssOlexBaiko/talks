@@ -1,0 +1,121 @@
+Version Management In Go
+12 June 2018
+Tags: Go, vgo, versioning
+
+Oles Baiko
+Go Software Engineer
+
+* Agenda
+- A bit of history
+- Go get
+- Concept of Semantic versioning
+- Vgo
+- Demo
+
+* A bit of history
+In the beginning there was go get and the GOPATH.
+
+The GOPATH is one workspace where all your source lives. It comes from the way Google does source control where most of
+their source is in a monorepo. The GOPATH can essentially point to a monorepo location.
+go get would pull, or update with the -u flag, from the tip of source control for a remote location.
+It was like cp but knew how to talk to remote source control systems.
+There were no versions. It was built around how Google handles source and dependencies.
+Go is a Google owned and run project so a system built around their style is where this all started.
+
+* A bit of history: Go 1.5 Vendor Experiment
+Based on Keith’s proposal, go team propose that, as an experiment for Go 1.5,
+they add a temporary vendor mode that causes the go command to add these semantics:
+
+- If there is a source directory d/vendor, then, when compiling a source file within
+the subtree rooted at d, import "p" is interpreted as import "d/vendor/p" if that path
+names a directory containing at least one file with a name ending in “.go”.
+- When there are multiple possible resolutions, the most specific (longest) path wins.
+- The short form must always be used: no import path can contain “/vendor/” explicitly.
+- Import comments are ignored in vendored packages.
+
+The interpretation of an import depends only on where the source code
+containing that import sits in the tree.
+
+* A bit of history: DEP
+The first major community tool was godep. Early on it provided a way to snapshot the VCS revisions you were using in your GOPATH and then restore those to the GOPATH.
+This provided a way for different applications to use different revisions of the same dependencies.
+Godep did have some manual steps you had to do when switching between applications.
+For example, you needed to restore the revisions of dependencies for that application to the GOPATH.
+But, it would work alongside the Google workflow so it worked.
+There were some other tools lurking around about the same time but none of them gained the traction of godep.
+Godep allowed you to “easily”:
+
+- pin dependencies in your $GOPATH to a project
+- copy dependencies from a project to your $GOPATH
+- browse what dependencies are pinned via Godeps.json
+
+* A bit of history: Vgo
+At the GopherCon in Denver in 2017 there was a contributor summit. It was a place where some people could get together
+to discuss Go the day prior to GopherCon.
+At this summit there was time set aside for people to discuss dependency management and we did for some time.
+Around the conclusion of that time Russ Cox, the current lead of the Go team, came to the table.
+He made a comment that he could do better if he went off on his own and built something.
+That something was later announced as vgo. It is the thing he went off on his own, apart from the community, and created.
+Despite community objections, vgo was recently accepted as the path forward.
+
+* Go get
+go get [-d] [-f] [-fix] [-insecure] [-t] [-u] [-v] [build flags] [packages]
+
+Get downloads the packages named by the import paths, along with their dependencies.
+It then installs the named packages, like 'go install'.
+The -d flag instructs get to stop after downloading the packages; that is, it instructs get not to install the packages.
+The -f flag, valid only when -u is set, forces get -u not to verify that each package has been checked out from the
+source control repository implied by its import path.
+This can be useful if the source is a local fork of the original.
+The -fix flag instructs get to run the fix tool on the downloaded packages before resolving dependencies or building the code.
+The -insecure flag permits fetching from repositories and resolving custom domains using insecure schemes such as HTTP.
+Use with caution.
+The -t flag instructs get to also download the packages required to build the tests for the specified packages.
+The -u flag instructs get to use the network to update the named packages and their dependencies.
+By default, get uses the network to check out missing packages but does not use it to look for updates to existing packages.
+The -v flag enables verbose progress and debug output.
+https://golang.org/cmd/go/#hdr-Download_and_install_packages_and_dependencies
+
+* Semantic Versioning
+Given a version number MAJOR.MINOR.PATCH, increment the:
+
+MAJOR version when you make incompatible API changes,
+
+MINOR version when you add functionality in a backwards-compatible manner, and
+
+PATCH version when you make backwards-compatible bug fixes.
+
+Additional labels for pre-release and build metadata are available as extensions to the MAJOR.MINOR.PATCH format.
+
+* Vgo
+Introduce the concept of a Go module, which is a group of packages that share a common prefix, the module path,
+and are versioned together as a single unit. Most projects will adopt a workflow in which a version-control repository
+corresponds exactly to a single module. Larger projects may wish to adopt a workflow in which a version-control repository
+can hold multiple modules. Both workflows will be supported.
+
+Assign version numbers to modules by tagging specific commits with semantic versions such as v1.2.0.
+(See the Defining Go Modules post for details, including how to tag multi-module repositories.)
+
+Adopt semantic import versioning, in which each major version has a distinct import path.
+Specifically, an import path contains a module path, a version number, and the the path to a specific package inside the module.
+If the major version is v0 or v1, then the version number element must be omitted; otherwise it must be included.
+
+* Vgo
+The packages imported as my/thing/sub/pkg, my/thing/v2/sub/pkg, and my/thing/v3/sub/pkg come from major versions
+v1, v2, and v3 of the module my/thing, but the build treats them simply as three different packages.
+A program that imports all three will have all three linked into the final binary, just as if they were my/red/pkg,
+my/green/pkg, and my/blue/pkg or any other set of three different import paths.
+
+.image ./media/impver.png
+
+* DEMO
+Demo time
+
+* Links
+https://semver.org/
+https://blog.golang.org/versioning-proposal
+https://github.com/golang/go/wiki/vgo
+https://codeengineered.com/blog/2018/golang-godep-to-vgo/
+https://blog.gopheracademy.com/advent-2016/saga-go-dependency-management/
+https://github.com/golang/dep
+https://docs.google.com/document/d/1Bz5-UB7g2uPBdOx-rw5t9MxJwkfpx90cqG9AFL0JAYo/edit
