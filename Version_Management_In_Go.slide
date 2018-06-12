@@ -60,16 +60,11 @@ Despite community objections, vgo was recently accepted as the path forward.
 
 * Go get
 go get [-d] [-f] [-fix] [-insecure] [-t] [-u] [-v] [build flags] [packages]
-
-Get downloads the packages named by the import paths, along with their dependencies.
-It then installs the named packages, like 'go install'.
 The -d flag instructs get to stop after downloading the packages; that is, it instructs get not to install the packages.
 The -f flag, valid only when -u is set, forces get -u not to verify that each package has been checked out from the
 source control repository implied by its import path.
-This can be useful if the source is a local fork of the original.
 The -fix flag instructs get to run the fix tool on the downloaded packages before resolving dependencies or building the code.
 The -insecure flag permits fetching from repositories and resolving custom domains using insecure schemes such as HTTP.
-Use with caution.
 The -t flag instructs get to also download the packages required to build the tests for the specified packages.
 The -u flag instructs get to use the network to update the named packages and their dependencies.
 By default, get uses the network to check out missing packages but does not use it to look for updates to existing packages.
@@ -92,10 +87,8 @@ Introduce the concept of a Go module, which is a group of packages that share a 
 and are versioned together as a single unit. Most projects will adopt a workflow in which a version-control repository
 corresponds exactly to a single module. Larger projects may wish to adopt a workflow in which a version-control repository
 can hold multiple modules. Both workflows will be supported.
-
 Assign version numbers to modules by tagging specific commits with semantic versions such as v1.2.0.
 (See the Defining Go Modules post for details, including how to tag multi-module repositories.)
-
 Adopt semantic import versioning, in which each major version has a distinct import path.
 Specifically, an import path contains a module path, a version number, and the the path to a specific package inside the module.
 If the major version is v0 or v1, then the version number element must be omitted; otherwise it must be included.
