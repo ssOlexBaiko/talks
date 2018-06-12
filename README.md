@@ -14,4 +14,4 @@ Lesson 6. [Concurrency HA](https://github.com/ssOlexBaiko/talks/blob/master/ha/c
 
 Lesson 8. [Profiling links&samples](https://github.com/ssOlexBaiko/talks/blob/master/ha/profiling_links.txt)
 
-Lesson 9. [Version Management in Go](https://github.com/ssOlexBaiko/talks/blob/master/ha/Version_Management_In_Go.slide)
+Lesson 9. [Version Management in Go](https://github.com/ssOlexBaiko/talks/Version_Management_In_Go.slide)
